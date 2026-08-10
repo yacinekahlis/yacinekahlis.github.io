@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tuner: AI Car Designer</title>
+<meta name="description" content="See any mod on your own car in seconds. Wheels, wraps, widebody — 140+ mods rendered on your real photos by AI." />
+<link rel="icon" href="img/icon.png" />
+<link rel="apple-touch-icon" href="img/icon.png" />
+<meta property="og:title" content="Tuner: AI Car Designer" />
+<meta property="og:description" content="See any mod on your own car in seconds. Wheels, wraps, widebody — rendered on your real photos by AI." />
+<meta property="og:image" content="img/hero.webp" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#000000; --bg2:#0f0f12; --card:#141418;
+    --text:#f5f5f7; --muted:#9b9ba1;
+    --accent:#bf5af2; --blue:#3478f6;
+    --radius:22px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:"Archivo",sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .display{font-family:"Archivo Black",sans-serif;text-transform:uppercase;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+  nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:18px}
+  .brand img{width:40px;height:40px;border-radius:10px}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--accent);color:#fff;font-weight:700;
+    padding:14px 24px;border-radius:999px;font-size:15px;
+    transition:transform .15s ease, box-shadow .15s ease;
+    box-shadow:0 8px 30px rgba(191,90,242,.35);
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(191,90,242,.45)}
+  .btn.ghost{background:rgba(255,255,255,.08);box-shadow:none}
+  .btn.ghost:hover{background:rgba(255,255,255,.14)}
+
+  header{position:relative}
+  header::before{
+    content:"";position:absolute;inset:-200px -20% auto;height:900px;
+    background:radial-gradient(600px 600px at 72% 38%, rgba(191,90,242,.20), transparent 70%),
+               radial-gradient(500px 500px at 30% 60%, rgba(52,120,246,.12), transparent 70%);
+    pointer-events:none;
+  }
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:56px 0 30px;position:relative}
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(191,90,242,.14);color:var(--accent);
+    font-weight:700;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    padding:10px 18px;border-radius:999px;margin-bottom:26px;
+  }
+  .kicker .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  h1{font-size:clamp(42px,6.2vw,80px);line-height:.98;margin-bottom:24px}
+  h1 .hl{color:var(--accent)}
+  .sub{color:var(--muted);font-size:19px;line-height:1.55;max-width:520px;margin-bottom:34px}
+  .cta-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .cta-note{color:var(--muted);font-size:13px}
+  .hero-art{
+    justify-self:center;width:min(520px,90vw);border-radius:26px;
+    filter:drop-shadow(0 40px 80px rgba(0,0,0,.65));
+  }
+
+  section{padding:80px 0}
+  .sec-kicker{color:var(--accent);font-weight:700;letter-spacing:.22em;font-size:13px;text-transform:uppercase;margin-bottom:14px}
+  h2{font-size:clamp(30px,4.2vw,50px);line-height:1.02;margin-bottom:18px}
+  .sec-sub{color:var(--muted);font-size:17px;line-height:1.6;max-width:560px}
+
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:48px}
+  .card{
+    background:var(--card);border:1px solid rgba(255,255,255,.06);
+    border-radius:var(--radius);padding:28px;
+    transition:transform .2s ease,border-color .2s ease;
+  }
+  .card:hover{transform:translateY(-4px);border-color:rgba(191,90,242,.4)}
+  .card .ico{
+    width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+    background:rgba(191,90,242,.14);font-size:22px;margin-bottom:18px;
+  }
+  .card h3{font-size:19px;margin-bottom:8px}
+  .card p{color:var(--muted);font-size:15px;line-height:1.55}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+  .step{background:var(--bg2);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:28px}
+  .step .num{
+    font-family:"Archivo Black",sans-serif;font-size:36px;color:var(--accent);margin-bottom:12px;
+  }
+  .step h3{font-size:19px;margin-bottom:8px}
+  .step p{color:var(--muted);font-size:15px;line-height:1.55}
+
+  .band{
+    background:linear-gradient(120deg, rgba(191,90,242,.16), rgba(52,120,246,.12));
+    border:1px solid rgba(191,90,242,.25);border-radius:var(--radius);
+    display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;
+    padding:44px;margin-top:20px;overflow:hidden;
+  }
+  .band img{width:100%;border-radius:18px}
+  .band h2{margin-bottom:12px}
+  .band p{color:var(--muted);font-size:16px;line-height:1.6;margin-bottom:22px}
+
+  footer{border-top:1px solid rgba(255,255,255,.07);padding:36px 0;color:var(--muted);font-size:14px}
+  .foot{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  .foot a{color:var(--muted)}
+  .foot a:hover{color:var(--text)}
+  .foot .links{display:flex;gap:22px;flex-wrap:wrap}
+
+  @media (max-width:860px){
+    .hero{grid-template-columns:1fr;text-align:center;padding-top:36px}
+    .sub{margin:0 auto 34px}
+    .cta-row{justify-content:center}
+    .grid{grid-template-columns:1fr 1fr}
+    .steps{grid-template-columns:1fr}
+    .band{grid-template-columns:1fr;padding:28px}
+  }
+  @media (max-width:520px){ .grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="./"><img src="img/icon.png" alt="Tuner icon" />Tuner</a>
+    <!-- TODO: replace with the real App Store link once the app is live -->
+    <a class="btn ghost" href="#get">Get the app</a>
+  </nav>
+</div>
+
+<header>
+  <div class="wrap hero">
+    <div>
+      <span class="kicker"><span class="dot"></span>AI Car Designer</span>
+      <h1 class="display">Your car.<br /><span class="hl">Any mod.</span><br />In seconds.</h1>
+      <p class="sub">Snap a photo of your car and watch AI render the wheels, wrap, or full widebody build you've been picturing — on your real car, not a lookalike.</p>
+      <div class="cta-row" id="get">
+        <!-- TODO: replace href with the real App Store link once live -->
+        <a class="btn" href="#">Download on the App Store</a>
+        <span class="cta-note">For iPhone · English &amp; العربية</span>
+      </div>
+    </div>
+    <img class="hero-art" src="img/hero.webp" alt="A car render made with Tuner" />
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-kicker">What it does</div>
+    <h2 class="display">Stop imagining it.<br />See it.</h2>
+    <p class="sec-sub">Every build decision is a bet. Tuner lets you see the result on your own car before you spend a dollar on parts.</p>
+    <div class="grid">
+      <div class="card"><div class="ico">👀</div><h3>Your real car</h3><p>Renders happen on your photo — your paint, your angle, your driveway. Not a stock 3D model.</p></div>
+      <div class="card"><div class="ico">🛠️</div><h3>140+ mods</h3><p>Wheels, wraps, widebody kits, splitters, spoilers, tints, stance — build step by step, zone by zone.</p></div>
+      <div class="card"><div class="ico">📸</div><h3>Found a part online?</h3><p>Upload a photo of any part — a spoiler, a bumper, a set of rims — and Tuner fits it on your car.</p></div>
+      <div class="card"><div class="ico">🎬</div><h3>19 scenes, HD</h3><p>Shoot your build in studio, urban, mountain and more. Save and share in high resolution.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-kicker">How it works</div>
+    <h2 class="display">Three taps to a build</h2>
+    <div class="steps">
+      <div class="step"><div class="num">01</div><h3>Import your car</h3><p>One photo is all it takes. Frame it, and it becomes your canvas.</p></div>
+      <div class="step"><div class="num">02</div><h3>Pick your mods</h3><p>Choose from the catalog front to rear, or upload a reference photo to match a style or fit a specific part.</p></div>
+      <div class="step"><div class="num">03</div><h3>Generate</h3><p>AI renders your build in seconds. Iterate on the result, keep building, save to your garage.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="band">
+      <div>
+        <div class="sec-kicker">Privacy first</div>
+        <h2 class="display">Your photos stay yours</h2>
+        <p>No account. No cloud gallery. Your photos are processed transiently to generate your render and are never stored on our servers — your garage lives on your phone, and nowhere else.</p>
+        <a class="btn ghost" href="privacy.html">Read the privacy policy</a>
+      </div>
+      <img src="img/nitro.png" alt="Nitro bottles artwork" />
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Yacine Kahlis · Tuner</span>
+    <div class="links">
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
