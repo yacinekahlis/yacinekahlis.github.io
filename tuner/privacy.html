@@ -29,26 +29,40 @@
   <nav><a href="./" style="display:flex;align-items:center;gap:12px"><img src="img/icon.png" alt="" />Tuner</a></nav>
 
   <h1>Privacy Policy</h1>
-  <p class="date">Effective date: August 9, 2026</p>
+  <p class="date">Effective date: September 11, 2026</p>
 
   <p>This Privacy Policy explains how Tuner (&ldquo;we&rdquo;, &ldquo;us&rdquo;) collects, uses, and protects your information when you use the Tuner mobile application (the &ldquo;App&rdquo;), published by Yacine Kahlis. By using the App you agree to the practices described here.</p>
 
   <h2>Information we collect</h2>
   <ul>
-    <li><strong>Device identifier:</strong> an anonymous, randomly generated ID stored on your device. The App has no accounts and never asks for your name or email.</li>
-    <li><strong>Photos you submit:</strong> the car photos (and optional reference photos) you choose to transform. They are processed transiently to generate your images and are not stored on our servers.</li>
+    <li><strong>Device identifier:</strong> a random ID the App creates the first time it runs and keeps in your device's secure storage (the iOS Keychain), so it stays the same if you delete and reinstall the App. It is not tied to your name, email or Apple ID. The App has no accounts and never asks who you are.</li>
+    <li><strong>Photos you submit:</strong> the car photos (and optional reference photos) you choose to transform. They are sent to our server and to our AI provider to generate your image. We do not store your original photos.</li>
+    <li><strong>Your first build:</strong> the App lets every device make one build during setup. To make sure it is used only once, and to give it back to you if you reinstall the App, we keep on our server the generated image of that first build, the mods and colour you picked, and the date, linked to your device identifier.</li>
+    <li><strong>Generation records:</strong> the date of each generation and your plan type, linked to your device identifier, so we can apply each plan's generation allowance and fair-use limits.</li>
     <li><strong>Purchase status:</strong> your subscription entitlement and generation-credit balance, processed by Apple and RevenueCat.</li>
-    <li><strong>Usage data:</strong> basic, non-identifying diagnostics that help us keep the App reliable.</li>
+    <li><strong>Usage data and session recordings:</strong> which screens you open and which actions you take in the App (for example starting a build or viewing the plans), your device model, OS version, app version and language, linked to your device identifier. We also record in-app sessions as a sequence of screenshots of the App's screens, which can include your photos and generated images; text you type is masked and is not recorded. We use this only to understand how the App is used and to fix problems.</li>
   </ul>
 
   <h2>How we use your information</h2>
-  <p>We use your information to provide the App's features: generating AI transformations of your car photos and managing your subscription. Your generation history is stored locally on your device. We do not sell your personal information.</p>
+  <p>We use your information to provide the App's features: generating AI transformations of your car photos, giving you your first build and restoring it after a reinstall, managing your subscription and generation allowance, and improving the App. Your Garage (the history of your builds) is stored on your device. We do not sell your personal information, we do not use it for advertising, and we do not track you across other companies' apps or websites.</p>
 
   <h2>Third-party services</h2>
-  <p>We rely on trusted third parties to operate the App, including cloud hosting, payment processing (Apple and RevenueCat), and AI providers used to generate images. These providers process data only as needed to deliver their service.</p>
+  <p>We rely on these providers to operate the App. Each processes data only as needed to deliver its service:</p>
+  <ul>
+    <li><strong>Railway</strong>: hosts our server and database.</li>
+    <li><strong>Google (Gemini API)</strong>: generates your images from the photos you submit.</li>
+    <li><strong>Apple and RevenueCat</strong>: process payments and subscription status.</li>
+    <li><strong>PostHog</strong>: product analytics and session recordings.</li>
+  </ul>
 
   <h2>Data retention and deletion</h2>
-  <p>Generated images live on your device to power your history; deleting the App deletes them. You can request deletion of the data linked to your device identifier by contacting us.</p>
+  <ul>
+    <li>Your Garage lives on your device; deleting the App deletes it.</li>
+    <li>The image of your first build is kept on our server for up to 12 months, then deleted.</li>
+    <li>The record that your device already used its first build (device identifier and date, without the image) is kept for up to 3 years.</li>
+    <li>Photos you submit are not kept once your image is generated.</li>
+  </ul>
+  <p>You can ask us to delete the data linked to your device identifier at any time by emailing us. Because the App has no accounts, we will reply with what we need to find your data.</p>
 
   <h2>Your rights</h2>
   <p>Depending on your region, you may have the right to access, correct, export, or delete your personal data. To exercise these rights, reach out using the contact details below.</p>
